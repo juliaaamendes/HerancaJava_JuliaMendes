@@ -4,6 +4,7 @@ Este projeto demonstra conceitos de herança em Java, usando o sistema de uma em
 
 ## 🎥 Demonstração em Vídeo  
 Confira o vídeo explicativo: [Clique aqui para assistir!](coloque-o-link-aqui)
+meu computador ta com problema na bios ate sabado ou domigo eu gravo o video, sorry leo n me da R por favor 
 
 ## 🗂️ Estrutura do Projeto  
 - **Main.java**: Contém o método a estrutura principal para executar os exemplos.
