@@ -12,7 +12,7 @@ public class Main {
             System.out.println("\nMenu:");
             System.out.println("1. Cadastrar Funcionário");
             System.out.println("2. Exibir Funcionários");
-            System.out.println("3. Sair");
+            System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
             int opcao = scanner.nextInt();
             scanner.nextLine(); //pra nao bugar o scanner
@@ -49,7 +49,7 @@ public class Main {
 
                 if (funcionario != null) {
                     funcionarios.add(funcionario);
-                    //se um funciuonario foi contratado de verdade, pimba, mensagem bonitinha
+                    //se um funcionario foi contratado de verdade, pimba, mensagem bonitinha
                     System.out.println("Funcionário cadastrado com sucesso!"); 
                 } else {
                     System.out.println("Tipo de funcionário inválido."); //se o funcionario nao foi contratado, pimba, mensagem de erro
@@ -60,13 +60,16 @@ public class Main {
                     System.out.println("Nenhum funcionário cadastrado.");
                 } else {
                     //se a lista de funcionarios nao ta vazia, pimba, mensagem bonitinha e mostra os funcionarios
-                    System.out.println("Funcionários cadastrados:");
+                    System.out.println("Temos " + funcionarios.size() + " funcionários cadastrados:");
+                    int contador = 1; //variavel pra contar os funcionarios
                     for (Funcionario f : funcionarios) {
+                        System.out.println(contador + "°");
                         f.mostrarDados();
                         System.out.println();
+                        contador++;
                     }
                 }
-            } else if (opcao == 3) {
+            } else if (opcao == 0) {
                 System.out.println("Saindo...");
                 break;
             } else {
