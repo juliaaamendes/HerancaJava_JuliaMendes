@@ -12,6 +12,7 @@ public class Main {
             System.out.println("\nMenu:");
             System.out.println("1. Cadastrar Funcionário");
             System.out.println("2. Exibir Funcionários");
+            System.out.println("3. Registro de Trabalho");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
             int opcao = scanner.nextInt();
@@ -55,11 +56,11 @@ public class Main {
                     System.out.println("Tipo de funcionário inválido."); //se o funcionario nao foi contratado, pimba, mensagem de erro
                 }
             } else if (opcao == 2) {
-                //aqui eu to checando se a lista de funcionarios ta vazia, se sim, pimba, mensagem de erro de novo
+                //aqui eu to checando se a lista de funcionarios ta vazia, se sim, mensagem de erro de novo
                 if (funcionarios.isEmpty()) { 
                     System.out.println("Nenhum funcionário cadastrado.");
                 } else {
-                    //se a lista de funcionarios nao ta vazia, pimba, mensagem bonitinha e mostra os funcionarios
+                    //se a lista de funcionarios nao ta vazia, mensagem bonitinha e mostra os funcionarios
                     System.out.println("Temos " + funcionarios.size() + " funcionários cadastrados:");
                     int contador = 1; //variavel pra contar os funcionarios
                     for (Funcionario f : funcionarios) {
@@ -69,14 +70,42 @@ public class Main {
                         contador++;
                     }
                 }
-            } else if (opcao == 0) {
-                System.out.println("Saindo...");
-                break;
-            } else {
+            } else if (opcao == 3) {
+                if (funcionarios.isEmpty()) { //vendo se tem pelo menos um funcionario cadastrado
+                    System.out.println("Nenhum funcionário cadastrado.");
+                } else {
+                    System.out.println("Escolha um funcionário para registrar o trabalho:");
+                    int contador = 1;
+                    for (Funcionario f : funcionarios) { //aqui eu to mostrando os funcionarios cadastrados, seu cargo e cpf
+                        System.out.println(contador + ". " + f.getClass().getSimpleName() + " - " + f.getCpf());
+                        contador++;
+                    }
+            
+                    System.out.print("Digite o número do funcionário: ");
+                    int escolha = scanner.nextInt();
+                    scanner.nextLine(); //pro scanner nao bugar de novo
+            
+                    if (escolha > 0 && escolha <= funcionarios.size()) {
+                        Funcionario escolhido = funcionarios.get(escolha - 1);
+                        escolhido.baterPonto();
+            
+                        //verifica o tipo do funcionario e executa a tarefa especifica
+                        if (escolhido instanceof Gerente) {
+                            ((Gerente) escolhido).realizarReuniao();
+                        } else if (escolhido instanceof Desenvolvedor) {
+                            ((Desenvolvedor) escolhido).programar();
+                        } else if (escolhido instanceof Estagiario) {
+                            ((Estagiario) escolhido).fazerTarefa();
+                        }
+                    } else if (opcao == 0) {
+                    System.out.println("Saindo...");
+                    break;
+                    } else {
+                        System.out.println("Funcionário inválido."); //se o funcionario nao foi escolhido, pimba, mensagem de erro
+                    }
+                }
                 System.out.println("Opção inválida."); //outra mensagem de erro pro usuario deixar de ser burro e escolher uma opção valida
             }
-        }
-
-        scanner.close(); //fechando o scanner pra nao dar erro de memoria depois
+        } scanner.close(); //fechando o scanner pra nao dar erro de memoria depois
     }
 }
